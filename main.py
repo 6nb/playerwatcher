@@ -3,14 +3,15 @@ import time
 import requests
 import os
 
-URL = os.environ('URL')
+print(f'Startup @ {datetime.now().strftime("%m-%d-%Y %#I:%M%p")}')
+URL = os.environ['URL']
 ENTRY_TIME = os.environ['ENTRY_TIME']
 ENTRY_STATUS = os.environ['ENTRY_STATUS']
 ENTRY_PLAYERS = os.environ['ENTRY_PLAYERS']
 ENTRY_MOTD = os.environ['ENTRY_MOTD']
 
 def playerwatcher():
-    
+    print(f'Checking server stats @ {datetime.now().strftime("%m-%d-%Y %#I:%M%p")}')
     # Send Request
     try: res = requests.get(f'https://api.mcsrvstat.us/2/9b9t.com').json()
     except Exception as err:
