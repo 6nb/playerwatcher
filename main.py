@@ -12,6 +12,7 @@ ENTRY_MOTD = os.environ['ENTRY_MOTD']
 
 def playerwatcher():
     print(f'Checking server stats @ {datetime.now().strftime("%m-%d-%Y %#I:%M%p")}')
+    
     # Send Request
     try: res = requests.get(f'https://api.mcsrvstat.us/2/9b9t.com').json()
     except Exception as err:
@@ -41,7 +42,7 @@ now = datetime.now()
 next_execution = now + (timedelta(minutes=10) - timedelta(minutes=now.minute % 10)) - timedelta(seconds=now.second)
 pw_delay = datetime.timestamp(next_execution) - datetime.timestamp(now)
 print(f'Calculated PlayerWatcher start in {pw_delay} seconds @ {next_execution}')
-# time.sleep(pw_delay)
+time.sleep(pw_delay)
 
 # Loop
 while True:
