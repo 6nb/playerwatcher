@@ -13,7 +13,9 @@ def playerwatcher():
     
     # Send Request
     try: res = requests.get(f'https://api.mcsrvstat.us/2/9b9t.com').json()
-    except Exception as err: print('GET failure:', err)
+    except Exception as err:
+        print('GET failure:', err)
+        return
 
     if res.get('online') == True:
         data = {
@@ -42,6 +44,5 @@ print(f'Calculated PlayerWatcher start in {pw_delay} seconds @ {next_execution}'
 
 # Loop
 while True:
-    try: playerwatcher()
-    except Exception as err: print(err)
+    playerwatcher()
     time.sleep(600)
