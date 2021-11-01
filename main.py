@@ -38,7 +38,7 @@ now = datetime.now()
 next_execution = now + (timedelta(minutes=10) - timedelta(minutes=now.minute % 10)) - timedelta(seconds=now.second)
 pw_delay = datetime.timestamp(next_execution) - datetime.timestamp(now)
 print(f'Calculated PlayerWatcher start in {pw_delay} seconds @ {next_execution}')
-time.sleep(pw_delay)
+# time.sleep(pw_delay)
 
 # Loop
 while True:
