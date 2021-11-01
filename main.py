@@ -34,17 +34,14 @@ def playerwatcher():
     except Exception as err: print('POST failure:', err)
  
 # Initial Loop Start Delay Calc
-def main():
-    now = datetime.now()
-    next_execution = now + (timedelta(minutes=10) - timedelta(minutes=now.minute % 10)) - timedelta(seconds=now.second)
-    pw_delay = datetime.timestamp(next_execution) - datetime.timestamp(now)
-    print(f'Calculated PlayerWatcher start in {pw_delay} seconds @ {next_execution}')
-    time.sleep(pw_delay)
+now = datetime.now()
+next_execution = now + (timedelta(minutes=10) - timedelta(minutes=now.minute % 10)) - timedelta(seconds=now.second)
+pw_delay = datetime.timestamp(next_execution) - datetime.timestamp(now)
+print(f'Calculated PlayerWatcher start in {pw_delay} seconds @ {next_execution}')
+time.sleep(pw_delay)
 
-    # Loop
-    while True:
-        try: playerwatcher()
-        except Exception as err: print(err)
-        time.sleep(600)
-
-if __name__ == '__main__': main()
+# Loop
+while True:
+    try: playerwatcher()
+    except Exception as err: print(err)
+    time.sleep(600)
