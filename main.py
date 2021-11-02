@@ -3,7 +3,6 @@ import time
 import requests
 import os
 
-print(f'Startup @ {datetime.now().strftime("%m-%d-%Y %#I:%M%p")}')
 URL = os.environ['URL']
 ENTRY_TIME = os.environ['ENTRY_TIME']
 ENTRY_STATUS = os.environ['ENTRY_STATUS']
@@ -11,7 +10,7 @@ ENTRY_PLAYERS = os.environ['ENTRY_PLAYERS']
 ENTRY_MOTD = os.environ['ENTRY_MOTD']
 
 def playerwatcher():
-    print(f'Checking server stats @ {datetime.now().strftime("%m-%d-%Y %#I:%M%p")}')
+    print(f'Checking server stats @ {datetime.now().strftime("%m-%d-%Y %#I:%M:%S.%f %p")}')
     
     # Send Request
     try: res = requests.get(f'https://api.mcsrvstat.us/2/9b9t.com').json()
@@ -39,10 +38,11 @@ def playerwatcher():
  
 # Initial Loop Start Delay Calc
 now = datetime.now()
-next_execution = now + (timedelta(minutes=10) - timedelta(minutes=now.minute % 10)) - timedelta(seconds=now.second)
-pw_delay = datetime.timestamp(next_execution) - datetime.timestamp(now)
-print(f'Calculated PlayerWatcher start in {pw_delay} seconds @ {next_execution}')
-time.sleep(pw_delay)
+print(f'Starting initial delay calc @ {now.strftime("%m-%d-%Y %#I:%M:%S.%f %p")}')
+next_execution = now + (timedelta(minutes=10) - timedelta(minutes=now.minute % 10)) - timedelta(seconds=now.second, microseconds=now.microsecond)
+delay = datetime.timestamp(next_execution) - datetime.timestamp(now)
+print(f'Calculated first request in {delay}s @ {next_execution}')
+time.sleep(delay)
 
 # Loop
 while True:
