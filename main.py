@@ -37,14 +37,15 @@ def playerwatcher():
     except Exception as err: print('POST failure:', err)
  
 # Initial Loop Start Delay Calc
-now = datetime.now()
-print(f'Starting initial delay calc @ {now.strftime("%m-%d-%Y %#I:%M:%S.%f %p")}')
-next_execution = now + (timedelta(minutes=10) - timedelta(minutes=now.minute % 10)) - timedelta(seconds=now.second, microseconds=now.microsecond)
-delay = datetime.timestamp(next_execution) - datetime.timestamp(now)
-print(f'Calculated first request in {delay}s @ {next_execution}')
-time.sleep(delay)
+def delay_calc():
+    now = datetime.now()
+    print(f'Starting delay calc @ {now.strftime("%m-%d-%Y %#I:%M:%S.%f %p")}')
+    next_execution = now + (timedelta(minutes=10) - timedelta(minutes=now.minute % 10)) - timedelta(seconds=now.second, microseconds=now.microsecond)
+    delay = datetime.timestamp(next_execution) - datetime.timestamp(now)
+    print(f'Calculated next request in {delay}s @ {next_execution.strftime("%m-%d-%Y %#I:%M:%S.%f %p")}')
+    return delay
 
 # Loop
 while True:
+    time.sleep(delay_calc())
     playerwatcher()
-    time.sleep(600)
