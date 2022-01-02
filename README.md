@@ -12,4 +12,5 @@ Free to use, make nicer charts than mine
 
 ## More Links
 - [MOTDs November 2021](https://ghostbin.com/cVfgw)
-- [MOTDs December 2021](https://ghostbin.com/gj7Ck)
+- [All MOTDs December 2021](https://ghostbin.com/gj7Ck)
+- [New MOTDS added in December](https://ghostbin.com/b0Isp)
